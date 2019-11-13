@@ -1,0 +1,51 @@
+def iswordguessed(secretword, lettersguessed):
+    for x in secretword:
+        if x not in lettersguessed:
+            return False
+    return True
+
+def getguessedword(secretword, lettersguessed):
+    words = []
+    for x in secretword:
+        if x in lettersguessed:
+            words.append(x)
+        else:
+            words.append(" _ ")
+    return "".join(words)
+
+def getavailableletters(lettersguessed):
+    import string
+    x = string.ascii_lowercase
+    available = []
+    for y in x:
+        if y not in lettersguessed:
+            available.append(y)
+    return "".join(available)
+
+def Hangaroo(secretword):
+    print("I want to play a game, a game of hangaroo!")
+    print("No need to rush! Just answer letters one by one...")
+    print("The word has ", len(secretword)," letters!")
+    lifeline = len(secretword) + 3
+    fail = 0
+    lettersguessed = []
+    
+    while lifeline > 0:
+        if iswordguessed(secretword, lettersguessed):
+            return print("Yep! That's the word! Congrats! Seems like you're free to go!")
+            break
+        print("Lifeline left: ", lifeline)
+        print("Available letters: ", getavailableletters(lettersguessed))
+        letter = str(input("Your guess? ")).lower()
+        if letter not in lettersguessed:
+            lettersguessed.append(letter)
+            if letter in secretword:
+                print("Hmmm...\n" , getguessedword(secretword,lettersguessed))
+            else:
+                print("Sadly that's not part of the answer...\n" , getguessedword(secretword,lettersguessed))
+                lifeline -=1
+                fail +=1
+        else:
+            print("Been there done that...\n" , getguessedword(secretword,lettersguessed))
+            
+    return print("You lost! The word was", secretword,"\nWrong guesses: ", fail)
