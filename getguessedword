@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Nov 13 16:52:06 2019
+
+@author: Marc
+"""
+
+def getguessedword(secretword, lettersguessed):
+    words = []
+    for x in secretword:
+        if x in lettersguessed:
+            words.append(x)
+        else:
+            words.append(" _ ")
+    return "".join(words)
