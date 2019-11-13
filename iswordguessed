@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Nov 13 16:46:55 2019
+
+@author: Marc
+"""
+
+def iswordguessed(secretword, lettersguessed):
+    for x in secretword:
+        if x not in lettersguessed:
+            return False
+    return True
